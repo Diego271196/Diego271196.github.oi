@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo2024</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #image-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #countdown-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #countdown {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: green; /* Cambio a color verde */
+        }
+
+        #final-message {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background-color: #ffd700;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 10px;
+        }
+
+        .contact-info img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .phone-number {
+            font-size: 18px;
+        }
+
+        .brand {
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        /* Estilos para pantallas pequeñas */
+        @media only screen and (max-width: 600px) {
+            #image-container {
+                max-width: 90%;
+            }
+
+            #countdown-box {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <img id="image" src="flayer.jpg" alt="Flayer">
+    </div>
+    <div id="countdown-box">
+        <div id="countdown">Solo faltan <span id="days"></span> días, <span id="hours"></span> horas <span id="minutes"></span> minutos <span id="seconds"></span> segundos para el 27 de abril de este año!</div>
+
+        <div class="contact-info">
+            <a href="https://wa.me/18292742141" target="_blank"><img src="https://img.freepik.com/psd-gratis/icono-3d-aplicacion-redes-sociales_23-2150049563.jpg?size=338&ext=jpg&ga=GA1.1.1488620777.1712793600&semt=ais" alt="WhatsApp"></a>
+            <span class="phone-number">Teléfono:+1 829-274-2141 </span>
+        </div>
+        <div class="contact-info">
+            <a href="https://wa.me/18299011681" target="_blank"><img src="https://img.freepik.com/psd-gratis/icono-3d-aplicacion-redes-sociales_23-2150049563.jpg?size=338&ext=jpg&ga=GA1.1.1488620777.1712793600&semt=ais" alt="WhatsApp"></a>
+            <span class="phone-number">Teléfono: +1 829-901-1681</span>
+        </div>
+
+        <div id="final-message">¡Compra tu boleto ahora!</div>
+    </div>
+
+    <div class="brand">Creado por Diego A. Feliz</div>
+
+    <script>
+        // Fecha objetivo
+        var targetDate = new Date('2024-04-27T00:00:00');
+
+        // Función para actualizar el contador
+        function updateCountdown() {
+            var currentDate = new Date();
+            var difference = targetDate - currentDate;
+
+            // Calcular días, horas, minutos y segundos restantes
+            var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Asegurar que los números sean de dos dígitos
+            hours = ('0' + hours).slice(-2);
+            minutes = ('0' + minutes).slice(-2);
+            seconds = ('0' + seconds).slice(-2);
+
+            // Mostrar el resultado en la página
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+
+            // Si la fecha objetivo ha pasado, mostrar un mensaje
+            if (difference < 0) {
+                clearInterval(interval);
+                document.getElementById("countdown").innerHTML = "¡El día ha llegado!";
+                document.getElementById("final-message").innerHTML = "¡Ha llegado el día del evento!";
+            }
+        }
+
+        // Llamar a la función cada segundo
+        var interval = setInterval(updateCountdown, 1000);
+        // Actualizar el contador por primera vez
+        updateCountdown();
+    </script>
+
+
+</body>
+</html>
